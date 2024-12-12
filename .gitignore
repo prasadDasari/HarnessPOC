@@ -1,0 +1,69 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Gradle Wrapper logs and files
+.gradle/
+.gradle/cache/
+.gradle/logs/
+.gradle/workspace/
+
+# Ignore build output
+build/
+
+# Ignore IntelliJ IDEA and Eclipse settings
+.idea/
+*.classpath
+*.project
+
+# Ignore OS-generated files
+Thumbs.db
+
+
+# Ignore Gradle Wrapper binaries
+gradlew
+gradlew.bat
+
+# Ignore JAR or other binaries (optional)
+*.jar
+*.war
+
+
+
