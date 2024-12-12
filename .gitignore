@@ -65,5 +65,8 @@ gradlew.bat
 *.jar
 *.war
 
+# Ignore Harness Delegate file
+harness-delegate.yaml
+
 
 
