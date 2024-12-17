@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 class HelloWorldController {
     @GetMapping("/hello")
     public String helloWorld() {
-        return "Hello, World from Harness Integration!";
+        return "Hello, World from Harness Integration Version 1!";
     }
 }
