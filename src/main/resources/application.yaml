@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: HelloWorldApplication
+  security:
+    actuator:
+      enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: always
+
+logging:
+  level:
+    org.springframework: INFO
+    com.example.helloworldapplication: DEBUG
