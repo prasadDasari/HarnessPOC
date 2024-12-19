@@ -14,7 +14,23 @@ spec:
         app: hello-world-java
     spec:
       containers:
-      - name: hello-world-java
-        image: hello-world-java:v1
-        ports:
-        - containerPort: 8080
+        - name: hello-world-java
+          image: hello-world-java:v1
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
