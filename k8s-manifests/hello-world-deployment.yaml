@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: hello-world-java
-          image: docker.io/prasaddasari/hello-world-java:${IMAGE_VERSION}
+          image: docker.io/prasaddasari/hello-world-java:${IMAGE_TAG}
           ports:
             - containerPort: 8080
           livenessProbe:
