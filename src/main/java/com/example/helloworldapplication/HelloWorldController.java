@@ -14,21 +14,27 @@ public class HelloWorldController {
 
     private static final Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
 
-    @Value("${IMAGE_TAG:v1}")  // Default to v1 if IMAGE_TAG is not set
-    private String appVersion;
+    //@Value("${IMAGE_TAG:v1}")  // Default to v1 if IMAGE_TAG is not set
+    //private String appVersion;
 
     @Autowired
     private CustomHealthIndicator healthIndicator;
 
     @GetMapping("/hello")
     public String helloWorld() {
-        logger.info("Currently deployed version for Hello world API: {}", appVersion);
+        // Log the current version based on IMAGE_TAG
+        String appVersion = System.getenv("IMAGE_TAG");
+        logger.info("Currently deployed version for Hello World API: {}", appVersion);
 
         // Simulate failure scenario for Version 2
         if (isVersion2()) {
             logger.debug("Simulating failure in version 2");
+
             // Set the failure state in the health indicator
             healthIndicator.setVersion2Failure(true);
+
+            // Log the failure and throw an exception to simulate a failure scenario
+            logger.error("Version 2 failure triggered");
             throw new RuntimeException("Simulating failure in version 2");
         }
 
@@ -37,6 +43,8 @@ public class HelloWorldController {
 
     // Method to determine if it's version 2
     private boolean isVersion2() {
-        return "v2".equalsIgnoreCase(appVersion);  // If IMAGE_TAG is v2, return true for failure
+        String imageTag = System.getenv("IMAGE_TAG");
+        logger.info("IMAGE_TAG value: {}", imageTag);
+        return "v2".equalsIgnoreCase(imageTag);
     }
 }
