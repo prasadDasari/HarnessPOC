@@ -10,19 +10,19 @@ import org.slf4j.Logger;
 
 @RestController
 @RequestMapping("/api")
-class HelloWorldController {
+public class HelloWorldController {
 
     private static final Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
+
+    @Value("${IMAGE_TAG:v1}")  // Default to v1 if IMAGE_TAG is not set
+    private String appVersion;
 
     @Autowired
     private CustomHealthIndicator healthIndicator;
 
-    @Value("${APP_VERSION:unknown}")
-    private String appVersion;
-
     @GetMapping("/hello")
     public String helloWorld() {
-        logger.info("Currently deployed version for Hello world API : {}", appVersion);
+        logger.info("Currently deployed version for Hello world API: {}", appVersion);
 
         // Simulate failure scenario for Version 2
         if (isVersion2()) {
@@ -37,6 +37,6 @@ class HelloWorldController {
 
     // Method to determine if it's version 2
     private boolean isVersion2() {
-        return "v2".equalsIgnoreCase(appVersion);
+        return "v2".equalsIgnoreCase(appVersion);  // If IMAGE_TAG is v2, return true for failure
     }
 }
