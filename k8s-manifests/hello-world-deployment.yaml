@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-world-java
-  namespace: default
+  namespace:  default
 spec:
   replicas: 1
   selector:
@@ -15,13 +15,13 @@ spec:
     spec:
       containers:
         - name: hello-world-java
-          image: "<+serviceVariables.repo>:<+serviceVariables.primary.tag>"
+          image: {{ .Values.image }}
           ports:
             - containerPort: 8080
           env:
             - name: IMAGE_TAG
               # IMAGE_TAG value injected dynamically from Harness pipeline
-              value: "<+serviceVariables.primary.tag>"
+              value: {{ .Values.primary.tag }}
           livenessProbe:
             httpGet:
               path: /actuator/health

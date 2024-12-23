@@ -1,4 +1,5 @@
-serviceVariables:
-  repo: "docker.io/prasaddasari/hello-world-java"
-  primary:
-    tag: "v1"   # This can be dynamically set based on the pipeline version or tag
+# Dynamically set the image from the service variable
+image: "<+serviceVariables.repo>:<+serviceVariables.primary.tag>"
+primary:
+  # Tag dynamically set during the pipeline run
+  tag: "<+serviceVariables.primary.tag>"
