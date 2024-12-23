@@ -20,7 +20,8 @@ spec:
             - containerPort: 8080
           env:
             - name: IMAGE_TAG
-              value: "v1"
+              # IMAGE_TAG value injected dynamically from Harness pipeline
+              value: "${IMAGE_TAG}"
           livenessProbe:
             httpGet:
               path: /actuator/health
