@@ -1,5 +1,3 @@
-# Dynamically set the image from the service variable
-image: "<+serviceVariables.repo>:<+serviceVariables.primary.tag>"
 primary:
-  # Tag dynamically set during the pipeline run
-  tag: "<+serviceVariables.primary.tag>"
+  tag: "<+build.tag>"
+image: "<+serviceVariables.repo>:<+primary.tag>"
