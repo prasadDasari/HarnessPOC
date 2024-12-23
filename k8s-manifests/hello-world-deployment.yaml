@@ -15,13 +15,13 @@ spec:
     spec:
       containers:
         - name: hello-world-java
-          image: "docker.io/prasaddasari/hello-world-java:${IMAGE_TAG}"
+          image:  "<+serviceVariables.repo.url>:<+serviceVariables.primary.tag>"
           ports:
             - containerPort: 8080
           env:
             - name: IMAGE_TAG
               # IMAGE_TAG value injected dynamically from Harness pipeline
-              value: "${IMAGE_TAG}"
+              value: "<+serviceVariables.primary.tag>"
           livenessProbe:
             httpGet:
               path: /actuator/health
