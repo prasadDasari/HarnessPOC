@@ -1,0 +1,4 @@
+serviceVariables:
+  repo: "docker.io/prasaddasari/hello-world-java"
+  primary:
+    tag: "v1"   # This can be dynamically set based on the pipeline version or tag
