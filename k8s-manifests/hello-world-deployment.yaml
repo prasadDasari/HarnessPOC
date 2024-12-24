@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-world-java
-  namespace:  default
+  namespace: default
 spec:
   replicas: 1
   selector:
@@ -15,12 +15,12 @@ spec:
     spec:
       containers:
         - name: hello-world-java
-          image: {{ .Values.image }}
+          image: "{{ .Values.image }}"
           ports:
             - containerPort: 8080
           env:
             - name: IMAGE_TAG
-              value: {{ .Values.tag }}
+              value: "{{ .Values.primary.tag }}"
           livenessProbe:
             httpGet:
               path: /actuator/health
@@ -37,4 +37,3 @@ spec:
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 3
-  progressDeadlineSeconds: 1400
