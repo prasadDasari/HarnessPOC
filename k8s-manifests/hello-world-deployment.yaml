@@ -15,12 +15,12 @@ spec:
     spec:
       containers:
         - name: hello-world-java
-          image: "{{ .Values.image }}"
+          image: "{{ .Values.serviceVariables.repo }}:{{ .Values.serviceVariables.primary.tag }}"
           ports:
             - containerPort: 8080
           env:
             - name: IMAGE_TAG
-              value: "{{ .Values.primary.tag }}"
+              value: "{{ .Values.serviceVariables.primary.tag }}"
           livenessProbe:
             httpGet:
               path: /actuator/health
@@ -37,3 +37,4 @@ spec:
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 3
+  progressDeadlineSeconds: 1400
