@@ -1,3 +1,40 @@
-image: "<+serviceVariables.repo>:<+serviceVariables.primary.tag>"
-primary:
-  tag: "<+serviceVariables.primary.tag>"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-java
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-java
+  template:
+    metadata:
+      labels:
+        app: hello-world-java
+    spec:
+      containers:
+        - name: hello-world-java
+          image: "{{ .Values.serviceVariables.repo }}:{{ .Values.serviceVariables.primary.tag }}"
+          ports:
+            - containerPort: 8080
+          env:
+            - name: IMAGE_TAG
+              value: "{{ .Values.serviceVariables.primary.tag }}"
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+  progressDeadlineSeconds: 1400
