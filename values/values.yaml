@@ -1,4 +1,4 @@
 serviceVariables:
   repo: "<+serviceVariables.repo>"
   primary:
-    tag: "<+serviceVariables.primary.tag>"
+    tag: "v1"
