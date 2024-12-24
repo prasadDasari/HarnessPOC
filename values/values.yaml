@@ -1,4 +1,4 @@
 serviceVariables:
   repo: "docker.io/prasaddasari/hello-world-java"
   primary:
-    tag: "<+serviceVariables.primary.tag>"
+    tag: "v1"
