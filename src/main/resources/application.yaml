@@ -18,5 +18,6 @@ management:
 
 logging:
   level:
-    org.springframework: INFO
+    root: DEBUG
+    org.springframework: DEBUG
     com.example.helloworldapplication: DEBUG

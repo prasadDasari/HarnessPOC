@@ -16,6 +16,8 @@ public class HelloWorldController {
 
     @PostConstruct
     public void init() {
+        logger.info("Initializing HelloWorldController....");
+        logger.info("IMAGE_TAG environment variable: {}", System.getenv("IMAGE_TAG"));
         String appVersion = System.getenv("IMAGE_TAG");
         logger.info("Currently deployed version for Hello World API: {}", appVersion);
 
@@ -25,7 +27,7 @@ public class HelloWorldController {
 
             // Log the failure and throw an exception to simulate a failure scenario
             logger.error("Version 2 failure triggered at startup");
-            throw new RuntimeException("Simulating failure in version 2 at startup");  // This will cause the failure
+            throw new RuntimeException("Simulating failure in version 2 at startup");
         }
     }
 
