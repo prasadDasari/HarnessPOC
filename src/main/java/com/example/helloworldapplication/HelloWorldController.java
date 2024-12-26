@@ -6,27 +6,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.slf4j.Logger;
 
+import javax.annotation.PostConstruct;
+
 @RestController
 @RequestMapping("/api")
 public class HelloWorldController {
 
     private static final Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
 
-    @GetMapping("/hello")
-    public String helloWorld() {
-        // Retrieve the IMAGE_TAG
+    @PostConstruct
+    public void init() {
         String appVersion = System.getenv("IMAGE_TAG");
         logger.info("Currently deployed version for Hello World API: {}", appVersion);
 
-        // Simulate failure scenario for Version 2 based on appVersion
+        // Simulate failure scenario for Version 2 during app startup
         if (isVersion2(appVersion)) {
             logger.debug("Simulating failure in version 2");
 
             // Log the failure and throw an exception to simulate a failure scenario
-            logger.error("Version 2 failure triggered");
-            throw new RuntimeException("Simulating failure in version 2");  // This will cause the failure
+            logger.error("Version 2 failure triggered at startup");
+            throw new RuntimeException("Simulating failure in version 2 at startup");  // This will cause the failure
         }
+    }
 
+    @GetMapping("/hello")
+    public String helloWorld() {
+        String appVersion = System.getenv("IMAGE_TAG");
+        logger.info("Currently deployed version for Hello World API: {}", appVersion);
         return "Hello, World from Harness Integration version " + appVersion + "!";
     }
 
