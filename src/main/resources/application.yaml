@@ -19,5 +19,7 @@ management:
 logging:
   level:
     root: DEBUG
-    org.springframework: DEBUG
+    org.springframework: INFO
     com.example.helloworldapplication: DEBUG
+server:
+  port: 8081
