@@ -1,3 +1,4 @@
+/*
 package com.example.helloworldapplication;
 
 import org.springframework.boot.actuate.health.Health;
@@ -25,3 +26,4 @@ public class CustomHealthIndicator implements HealthIndicator {
     }
 }
 
+*/
