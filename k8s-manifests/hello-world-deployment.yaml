@@ -23,17 +23,17 @@ spec:
               value: "{{ .Values.serviceVariables.primary.tag }}"
           livenessProbe:
             httpGet:
-              path: /api/hello
+              path: /actuator/health
               port: 8080
-            initialDelaySeconds: 10
+            initialDelaySeconds: 5
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 3
           readinessProbe:
             httpGet:
-              path: /api/hello
+              path: /actuator/health
               port: 8080
-            initialDelaySeconds: 10
+            initialDelaySeconds: 5
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 3

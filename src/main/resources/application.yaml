@@ -21,5 +21,3 @@ logging:
     root: DEBUG
     org.springframework: INFO
     com.example.helloworldapplication: DEBUG
-server:
-  port: 8081
