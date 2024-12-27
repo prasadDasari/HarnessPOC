@@ -1,6 +1,7 @@
 package com.example.helloworldapplication;
 
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.actuate.health.Health;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,4 +29,15 @@ public class HelloWorldController {
         logger.info("Currently deployed version for Hello World API: {}", appVersion);
         return "Hello, World from Harness Integration version " + appVersion + "!";
     }
+
+    @GetMapping("/actuator/health")
+    public Health health() {
+        String appVersion = System.getenv("IMAGE_TAG");
+        if ("v2".equals(appVersion)) {
+            // Simulate failure for v2 by returning a DOWN status
+            return Health.down().withDetail("Version", "v2 failed").build();
+        }
+        return Health.up().build();
+    }
+
 }

@@ -26,7 +26,7 @@ spec:
               path: /actuator/health
               port: 8080
             initialDelaySeconds: 5
-            periodSeconds: 5
+            periodSeconds: 10
             timeoutSeconds: 2
             failureThreshold: 3
           readinessProbe:
@@ -34,7 +34,12 @@ spec:
               path: /actuator/health
               port: 8080
             initialDelaySeconds: 5
-            periodSeconds: 5
+            periodSeconds: 10
             timeoutSeconds: 2
             failureThreshold: 3
   progressDeadlineSeconds: 1400
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
