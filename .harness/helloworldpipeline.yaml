@@ -1,0 +1,33 @@
+template:
+  name: hello-world-pipeline
+  identifier: helloworldpipeline
+  versionLabel: v1
+  type: Pipeline
+  projectIdentifier: default_project
+  orgIdentifier: default
+  tags: {}
+  spec:
+    stages:
+      - stage:
+          name: Deploy-hello-world
+          identifier: Deployhelloworld
+          tags: {}
+          template:
+            templateRef: HelloWorldTemplate
+            versionLabel: v1
+            templateInputs:
+              type: Deployment
+              spec:
+                service:
+                  serviceInputs:
+                    serviceDefinition:
+                      type: Kubernetes
+                      spec:
+                        artifacts:
+                          primary:
+                            primaryArtifactRef: <+input>
+                            sources: <+input>
+                        variables:
+                          - name: tag
+                            type: String
+                            value: <+input>
