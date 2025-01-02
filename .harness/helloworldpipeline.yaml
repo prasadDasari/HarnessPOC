@@ -1,6 +1,6 @@
 template:
-  name: hello-world-pipeline
-  identifier: helloworldpipeline
+  name: hello-world-helm-pipeline
+  identifier: helloworldhelmpipeline
   versionLabel: v1
   type: Pipeline
   projectIdentifier: default_project
@@ -9,19 +9,21 @@ template:
   spec:
     stages:
       - stage:
-          name: Deploy-hello-world
-          identifier: Deployhelloworld
+          name: Deploy-hello-world-helm
+          identifier: Deployhelloworldhelm
           tags: {}
           template:
-            templateRef: HelloWorldTemplate
+            templateRef: HelloWorldHelmTemplate
             versionLabel: v1
             templateInputs:
-              type: Deployment
+              # Use the HelmDeployment type for Helm charts
+              type: HelmDeployment
               spec:
                 service:
                   serviceInputs:
                     serviceDefinition:
-                      type: Kubernetes
+                      # Use Helm instead of Kubernetes
+                      type: Helm
                       spec:
                         artifacts:
                           primary:
@@ -30,4 +32,5 @@ template:
                         variables:
                           - name: tag
                             type: String
-                            value: <+input>
+                            # Fetch the tag value dynamically using the service variables
+                            value: <+serviceVariables.tag>

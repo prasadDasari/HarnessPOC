@@ -1,0 +1,43 @@
+# hello-world-chart/values.yaml
+replicaCount: 1
+
+image:
+  repository: "{{ .Values.serviceVariables.repo }}"
+  tag: "{{ .Values.serviceVariables.primary.tag }}"
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 8080
+
+livenessProbe:
+  httpGet:
+    path: /actuator/health
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  timeoutSeconds: 2
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /actuator/health
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  timeoutSeconds: 2
+  failureThreshold: 3
+
+podLabels:
+# Add custom labels to the pod
+podAnnotations: {}
+ingress:
+  enabled: false
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
