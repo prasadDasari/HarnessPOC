@@ -1,10 +1,10 @@
 # hello-world-chart/values.yaml
 replicaCount: 1
 
-#image:
-#  repository: "<+serviceVariables.repo>"
-#  tag: "<+serviceVariables.tag>"
-#  pullPolicy: Always
+image:
+  #repository: "<+serviceVariables.repo>"
+  #tag: "<+serviceVariables.tag>"
+  pullPolicy: Always
 
 serviceVariables:
   repo: "<+serviceVariables.repo>"
