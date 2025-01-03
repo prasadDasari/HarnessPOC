@@ -10,7 +10,7 @@ template:
     stages:
       - stage:
           name: Deploy-hello-world-helm
-          identifier: Deployhelloworldhelm
+          identifier: HelloWorldHelmTemplate
           tags: {}
           template:
             templateRef: HelloWorldHelmTemplate
