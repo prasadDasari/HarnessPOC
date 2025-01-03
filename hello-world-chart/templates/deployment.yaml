@@ -26,7 +26,7 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: hello-world-java
+        - name: hello-world-java-helm
           image: "{{ .Values.serviceVariables.repo }}:{{ .Values.serviceVariables.primary.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
