@@ -1,33 +1,36 @@
-name: hello-world-java-helm-pipeline
-identifier: helloworldjavahelmpipeline
-versionLabel: v1
-type: Pipeline
-projectIdentifier: default_project
-orgIdentifier: default
-tags: {}
-spec:
-  stages:
-    - stage:
-        name: hello-world-java-service-helm
-        identifier: helloworldjavaservicehelm
-        tags: {}
-        template:
-          templateRef: HelloWorldHelmTemplate
-          versionLabel: v1
-          templateInputs:
-            type: HelmDeployment
-            spec:
-              service:
-                serviceInputs:
-                  serviceDefinition:
-                    type: Helm
-                    spec:
-                      artifacts:
-                        primary:
-                          primaryArtifactRef: <+input>
-                          sources: <+input>
-                      variables:
-                        - name: tag
-                          type: String
-                          # Ensure you're using the correct service variable
-                          value: <+serviceVariables.tag>
+pipeline:
+  name: hello-world-java-helm-pipeline
+  identifier: helloworldjavahelmpipeline
+  versionLabel: v1
+  type: Pipeline
+  projectIdentifier: default_project
+  orgIdentifier: default
+  tags: {}
+  spec:
+    stages:
+      - stage:
+          name: hello-world-java-service-helm
+          identifier: helloworldjavaservicehelm
+          tags: {}
+          template:
+            templateRef: HelloWorldHelmTemplate
+            versionLabel: v1
+            templateInputs:
+              # Use the HelmDeployment type for Helm charts
+              type: HelmDeployment
+              spec:
+                service:
+                  serviceInputs:
+                    serviceDefinition:
+                      # Use Helm instead of Kubernetes
+                      type: Helm
+                      spec:
+                        artifacts:
+                          primary:
+                            primaryArtifactRef: <+input>
+                            sources: <+input>
+                        variables:
+                          - name: tag
+                            type: String
+                            # Fetch the tag value dynamically using the service variables
+                            value: <+input>
