@@ -2,9 +2,14 @@
 replicaCount: 1
 
 image:
-  repository: "{{ .Values.serviceVariables.repo }}"
-  tag: "{{ .Values.serviceVariables.primary.tag }}"
+  repository: "<+serviceVariables.repo>"
+  tag: "<+serviceVariables.tag>"
   pullPolicy: Always
+
+serviceVariables:
+  repo: "<+serviceVariables.repo>"
+  primary:
+    tag: "<+serviceVariables.tag>"
 
 service:
   type: ClusterIP
