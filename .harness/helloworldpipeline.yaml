@@ -1,6 +1,6 @@
-template:
-  name: hello-world-helm-pipeline
-  identifier: helloworldhelmpipeline
+pipeline:
+  name: hello-world-java-helm-pipeline
+  identifier: helloworldjavahelmpipeline
   versionLabel: v1
   type: Pipeline
   projectIdentifier: default_project
