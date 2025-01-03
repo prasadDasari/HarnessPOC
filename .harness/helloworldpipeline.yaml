@@ -9,8 +9,8 @@ template:
   spec:
     stages:
       - stage:
-          name: Deploy-hello-world-helm
-          identifier: HelloWorldHelmTemplate
+          name: hello-world-java-service-helm
+          identifier: helloworldjavaservice
           tags: {}
           template:
             templateRef: HelloWorldHelmTemplate
