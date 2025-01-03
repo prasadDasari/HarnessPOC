@@ -1,4 +1,4 @@
-pipeline:
+template:
   name: hello-world-java-helm-pipeline
   identifier: helloworldjavahelmpipeline
   versionLabel: v1
@@ -10,7 +10,7 @@ pipeline:
     stages:
       - stage:
           name: hello-world-java-service-helm
-          identifier: helloworldjavaservice
+          identifier: helloworldjavaservicehelm
           tags: {}
           template:
             templateRef: HelloWorldHelmTemplate
