@@ -14,13 +14,13 @@ pipeline:
             versionLabel: v1
             templateInputs:
               # Use the HelmDeployment type for Helm charts
-              type: HelmDeployment
+              type: Deployment
               spec:
                 service:
                   serviceInputs:
                     serviceDefinition:
                       # Use Helm instead of Kubernetes
-                      type: Helm
+                      type: NativeHelm
                       spec:
                         artifacts:
                           primary:
