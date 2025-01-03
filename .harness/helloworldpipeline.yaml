@@ -4,8 +4,7 @@ pipeline:
   projectIdentifier: default_project
   orgIdentifier: default
   tags: {}
-  spec:
-    stages:
+  stages:
       - stage:
           name: hello-world-java-service-helm
           identifier: helloworldjavaservicehelm
