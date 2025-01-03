@@ -1,8 +1,6 @@
 pipeline:
   name: hello-world-java-helm-pipeline
   identifier: helloworldjavahelmpipeline
-  versionLabel: v1
-  type: Pipeline
   projectIdentifier: default_project
   orgIdentifier: default
   tags: {}
