@@ -30,4 +30,4 @@ pipeline:
                           - name: tag
                             type: String
                             # Fetch the tag value dynamically using the service variables
-                            value: <+input>
+                            value: <+serviceVariables.tag>
