@@ -1,0 +1,31 @@
+service:
+  name: hivemq-service
+  identifier: hivemqservice
+  serviceDefinition:
+    type: NativeHelm
+    spec:
+      manifests:
+        - manifest:
+            identifier: hivemqmanifest
+            type: HelmChart
+            spec:
+              store:
+                type: Github
+                spec:
+                  connectorRef: GitHubConnectorPublicRepo
+                  gitFetchType: Branch
+                  folderPath: charts/hivemq-platform
+                  branch: harness-integration-with-helm
+              subChartPath: ""
+              valuesPaths:
+                - charts/hivemq-platform/values.yaml
+              skipResourceVersioning: false
+              enableDeclarativeRollback: false
+              helmVersion: V3
+              fetchHelmChartMetadata: false
+              commandFlags:
+                - commandType: Template
+                  flag: "--dependency-update"
+  gitOpsEnabled: false
+  orgIdentifier: default
+  projectIdentifier: default_project
